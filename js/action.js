@@ -7,12 +7,19 @@ $(document).ready(
      }
 );
 
+// plugins Jquery
+
+
+
+new WOW().init();
+
 
 // start nav aside
 let iconeOpen=$("i.iconeOpen");
 let navs=$(".nav-site");
 let navbar=$(".nav");
 navbar.css('left',`-${navs.innerWidth()}px`)
+
 iconeOpen.click(
     function()
     {
@@ -20,14 +27,16 @@ iconeOpen.click(
         console.log(navs, navs.innerWidth())
         if(navbar.css('left')=='0px')
         {
+          new WOW().init();
             navbar.animate({left:`-${navs.innerWidth()}`},1500);
-
+            $(".nav-links p").removeClass('animate__fadeInUpBig');
+            $(".nav-links p").css('animation-name','fadeOutDownBig');
         }
         else
         {
-            navbar.animate({left:`0px`},1500);
-
-
+          new WOW().init();
+          $(".nav-links p").css('animation-name','fadeInUpBig');
+            navbar.animate({left:`0px`},500);
         }
     }
 )
@@ -51,6 +60,7 @@ let Rows=$('#rowDisplay');
 // show Data in Row
 async function Display()
 {
+  
         containerRow ='';
         let modeTitle;
         let modeDate;
@@ -75,7 +85,7 @@ async function Display()
             }
 
             containerRow +=`   
-               <div class="col-lg-4 col-md-6 col-sm-12">
+               <div class="overflow-hidden col-lg-4 col-md-6 col-sm-12 wow animate__zoomInDown" data-wow-delay="0s" data-wow-duration="1s">
             <div class="filem position-relative bg-info overflow-hidden">
               <img src="https://image.tmdb.org/t/p/w500/${containerResponse.results[i].poster_path}" alt="" class="w-100">
               <div class="cover-image position-absolute h-100 w-100 top-100 d-flex justify-content-center align-items-center">

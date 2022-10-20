@@ -69,6 +69,7 @@ body
   .nav
   {
     z-index: 9999;
+    overflow: hidden;
   }
   .nav-site
   {
