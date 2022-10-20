@@ -7,6 +7,11 @@ body
 {
   font-family: "Segoe UI", Arial, sans-serif;
 }
+
+p
+{
+  font-size: 14px !important;
+}
 *
 {
   padding: 0;
@@ -124,3 +129,22 @@ body
   {
     top: 0% !important;
   }
+
+  @media only screen
+and (min-width: 0px) 
+and (max-width: 700px) 
+  { 
+    body
+    {
+      background-color: red!important;
+      font-size: 6px !important;
+    }
+    .nav-site
+    {
+      width: 150px;
+    }
+  }
+  /* .showData .row .col-lg-4
+  {
+    transform: translateX(10%);
+  } */

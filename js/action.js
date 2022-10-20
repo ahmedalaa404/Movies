@@ -86,12 +86,12 @@ async function Display()
 
             containerRow +=`   
                <div class="overflow-hidden col-lg-4 col-md-6 col-sm-12 wow animate__zoomInDown" data-wow-delay="0s" data-wow-duration="1s">
-            <div class="filem position-relative bg-info overflow-hidden">
+            <div class="filem position-relative bg-info ">
               <img src="https://image.tmdb.org/t/p/w500/${containerResponse.results[i].poster_path}" alt="" class="w-100">
-              <div class="cover-image position-absolute h-100 w-100 top-100 d-flex justify-content-center align-items-center">
+              <div class="overflow-hidden cover-image position-absolute h-100 w-100 top-100 d-flex justify-content-center align-items-center">
                 <div class="text-center">
-                  <h4>${modeTitle}</h4>
-                  <p class="text-black p-3">overview :${containerResponse.results[i].overview}</p>
+                  <h6 class="pt-sm-4">${modeTitle}</h6>
+                  <p class="text-black p-1">overview :${containerResponse.results[i].overview}</p>
                   <p class="text-black  my-2"> Rate :${containerResponse.results[i].vote_average.toPrecision(2)}</p>
                   <p class="text-black  my-2"> Date : ${modeDate}</p>
                 </div>
