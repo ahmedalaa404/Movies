@@ -8,10 +8,7 @@ body
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-p
-{
-  font-size: 14px !important;
-}
+
 *
 {
   padding: 0;
@@ -130,19 +127,41 @@ p
     top: 0% !important;
   }
 
-  @media only screen
-and (min-width: 0px) 
+@media only screen
+and (min-width: 10px) 
 and (max-width: 700px) 
   { 
-    body
+     body
     {
       background-color: red!important;
       font-size: 6px !important;
     }
+    
     .nav-site
     {
-      width: 150px;
+      width: 150px; 
     }
+
+     header .container
+    {
+
+      display: flex;
+      justify-content: end;
+    } 
+
+    header .container .row .col-sm-12 .inputs
+    {
+      padding-top:20px ;
+    }
+    .showData .row
+    {
+      transform: translateX(20%);
+
+    }
+  }
+  .w-90
+  {
+    width: 90%;
   }
   /* .showData .row .col-lg-4
   {
