@@ -9,7 +9,10 @@ $(document).ready(
 
 // plugins Jquery
 
-
+$(document).click(function (event) {
+  event.preventDefault();
+  // or use return false;
+});
 
 new WOW().init();
 
@@ -24,34 +27,49 @@ iconeOpen.click(
     function()
     {
         iconeOpen.toggleClass('fa-xmark');
-        console.log(navs, navs.innerWidth())
         if(navbar.css('left')=='0px')
         {
-          new WOW().init();
+
             navbar.animate({left:`-${navs.innerWidth()}`},1500);
             $(".nav-links p").removeClass('animate__fadeInUpBig');
             $(".nav-links p").css('animation-name','fadeOutDownBig');
         }
         else
         {
-          new WOW().init();
           $(".nav-links p").css('animation-name','fadeInUpBig');
             navbar.animate({left:`0px`},500);
         }
     }
 )
 // end nav of aside 
+$('.nav-links p a[typeShow]').click(
+  async function(e)
+  {
+    let goals=$(e.target)
+    if(goals.attr('typeShow')=='trending')
+    {
+      responsData(`${goals.attr('typeShow')}/all/day`);
+    }
+    else
+    {
+          responsData(`movie/${goals.attr('typeShow')}`);
+    }
+  }
+)
+
 
 // respons Data from Api 
 let containerResponse;
-async function responsData()
+
+async function responsData(type="movie/now_playing")
 {
-    let SendReq=await fetch("https://api.themoviedb.org/3/trending/movie/week?api_key=f2291e5d64d84082e4b2181b3587d77d");
-     containerResponse = await SendReq.json();
-console.log(containerResponse.results) ;
+        let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&page=1`);
+        containerResponse = await SendReq.json();
         await Display();
 } 
 responsData();
+
+
 
 
 
@@ -101,3 +119,6 @@ async function Display()
         }
         Rows.html(containerRow);
 }
+
+
+

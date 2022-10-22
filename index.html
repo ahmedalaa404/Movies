@@ -23,16 +23,17 @@
 <div class="loading bg-dark w-100 vh-100 position-fixed end-0 start-0 top-0 bottom-0 d-flex justify-content-center align-items-center">
   <span class="loader"></span>
 </div>
-<div class="nav position-fixed">
+
+<div class="nav position-fixed flex-nowrap">
   <div class="nav-site bg-black py-3">
 
     <div class="nav-links h-75 ps-4">
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="1s"><a href="" class="text-white text-decoration-none">Now playing</a></p>
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2s" ><a href="" class="text-white text-decoration-none">Popular</a></p>
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.3s"><a href="" class="text-white text-decoration-none">Top Rated</a></p>
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.4s" ><a href="" class="text-white text-decoration-none">Trending</a></p>
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.5s" ><a href="" class="text-white text-decoration-none">Upcoming</a></p>
-      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.6s"><a href="#contact" class="text-white text-decoration-none ">Contact Us</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="1s"><a href="" typeShow="now_playing" class="text-white text-decoration-none">Now playing</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2s" ><a href="" typeShow="popular" class="text-white text-decoration-none">Popular</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.3s"><a href="" typeShow="top_rated" class="text-white text-decoration-none">Top Rated</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.4s" ><a href="" typeShow="trending" class="text-white text-decoration-none">Trending</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.5s" ><a href="" typeShow="upcoming" class="text-white text-decoration-none">Upcoming</a></p>
+      <p class="mt-4 wow animate__fadeInUpBig"data-wow-delay="0s" data-wow-duration="2.6s"><a href=""  class="text-white text-decoration-none ">Contact Us</a></p>
     </div>
 
     <div class=" d-flex ps-4">
@@ -79,13 +80,13 @@
     </div>
     <div class="col-lg-6 col-sm-12">
       <div class="inputs">
-        <input type="text" class="form-control w-100 border border-0 bg-transparent border-bottom border-1 text-white" placeholder="get movies by word....">
+        <input id="searchPage" type="text" class="form-control w-100 border border-0 bg-transparent border-bottom border-1 text-white" placeholder="get movies by word....">
       </div>
     </div>
 
     <div class="col-lg-6 col-sm-12">
       <div class="inputs">
-        <input type="text" class="form-control w-100 border border-0 bg-transparent border-bottom border-1 text-white" placeholder="search.....">
+        <input id="searchApi" type="text" class="form-control w-100 border border-0 bg-transparent border-bottom border-1 text-white" placeholder="search.....">
       </div>
     </div>
 
