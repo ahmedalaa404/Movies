@@ -60,14 +60,28 @@ $('.nav-links p a[typeShow]').click(
 
 // respons Data from Api 
 let containerResponse;
+let saveType='movie/now_playing';
+let dataRes;
 
-async function responsData(type="movie/now_playing")
+async function responsData(type="movie/now_playing",query="")
 {
-        let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&page=1`);
+  let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US${query}&page=1`);
+
+  // https://api.themoviedb.org/3/search/movie?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&query=Halloween&page=1&include_adult=false
+
+
+        // let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&query=Halloween&page=1`);
         containerResponse = await SendReq.json();
-        await Display();
+        dataRes=await containerResponse.results;
+        saveType=type;
+        await Display(dataRes);
+        // await num();
 } 
+
 responsData();
+
+
+
 
 
 
@@ -76,41 +90,41 @@ responsData();
 
 let Rows=$('#rowDisplay');
 // show Data in Row
-async function Display()
+async function Display(value)
 {
   
         containerRow ='';
         let modeTitle;
         let modeDate;
-        for(let i=0 ; i<containerResponse.results.length;i++)
+        for(let i=0 ; i<value.length;i++)
         {
-            if(containerResponse.results[i].original_title!=undefined)
+            if(value[i].original_title!=undefined)
             {
-              modeTitle=containerResponse.results[i].original_title;
+              modeTitle=value[i].original_title;
             }
             else
             {
-                modeTitle=containerResponse.results[i].name;
+                modeTitle=value[i].name;
             }
 
-            if(containerResponse.results[i].release_date!=undefined)
+            if(value[i].release_date!=undefined)
             {
-              modeDate=containerResponse.results[i].release_date;
+              modeDate=value[i].release_date;
             }
             else
             {
-                modeDate=containerResponse.results[i].first_air_date;                ;
+                modeDate=value[i].first_air_date;                ;
             }
 
-            containerRow +=`   
+            containerRow+=`   
                <div class="overflow-hidden col-lg-4 col-md-6 col-sm-12 wow animate__zoomInDown" data-wow-delay="0s" data-wow-duration="1s">
             <div class="filem position-relative bg-info ">
-              <img src="https://image.tmdb.org/t/p/w500/${containerResponse.results[i].poster_path}" alt="" class="w-100">
+              <img src="https://image.tmdb.org/t/p/w500/${value[i].poster_path}" alt="" class="w-100">
               <div class="overflow-hidden cover-image position-absolute h-100 w-100 top-100 d-flex justify-content-center align-items-center">
                 <div class="text-center">
                   <h6 class="pt-sm-4 mb-0 py-lg-3">${modeTitle}</h6>
-                  <p class="text-black p-1">overview :${containerResponse.results[i].overview}</p>
-                  <p class="text-black  my-2"> Rate :${containerResponse.results[i].vote_average.toPrecision(2)}</p>
+                  <p class="text-black p-1">overview :${value[i].overview}</p>
+                  <p class="text-black  my-2"> Rate :${value[i].vote_average.toPrecision(2)}</p>
                   <p class="text-black  my-2"> Date : ${modeDate}</p>
                 </div>
               </div>
@@ -120,5 +134,24 @@ async function Display()
         Rows.html(containerRow);
 }
 
+
+
+let serachPage= document.getElementById('searchPage');
+serachPage.addEventListener('input',function()
+{
+  for(let i=0;i<dataRes.length;i++)
+  {
+    console.log("aa");
+  }
+})
+
+
+// async function num()
+// {
+// return new Promise (function()
+// {
+//   console.log(dataRes.length)
+// })
+// }
 
 
