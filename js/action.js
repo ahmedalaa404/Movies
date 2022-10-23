@@ -1,23 +1,28 @@
-// loading screen and doc ready
-$(document).ready(
-    function ()
-     {
-        $('.loading').fadeOut(1000,function(){ $('.loading').remove();});
-
-     }
-);
-
-// plugins Jquery
+// to prevent the reload in the site when u click any link
 
 $(document).click(function (event) {
   event.preventDefault();
-  // or use return false;
 });
 
-new WOW().init();
+// loading screen and doc ready
+  $(document).ready(
+      function ()
+      {
+          $('.loading').fadeOut(1000,function(){ $('.loading').remove();});
+
+      }
+  );
+  // end of loading screen
+  
+// plugins Jquery
+  new WOW().init();
+// end plugins 
 
 
-// start nav aside
+
+
+
+// start navbar  aside in the left of document
 let iconeOpen=$("i.iconeOpen");
 let navs=$(".nav-site");
 let navbar=$(".nav");
@@ -42,8 +47,10 @@ iconeOpen.click(
     }
 )
 // end nav of aside 
+
+// function of click in any links of nav
 $('.nav-links p a[typeShow]').click(
-  async function(e)
+   function(e)
   {
     let goals=$(e.target)
     if(goals.attr('typeShow')=='trending')
@@ -60,24 +67,15 @@ $('.nav-links p a[typeShow]').click(
 
 // respons Data from Api 
 let containerResponse;
-let saveType='movie/now_playing';
 let dataRes;
 
 async function responsData(type="movie/now_playing",query="")
 {
   let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US${query}&page=1`);
-
-  // https://api.themoviedb.org/3/search/movie?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&query=Halloween&page=1&include_adult=false
-
-
-        // let SendReq=await fetch(`https://api.themoviedb.org/3/${type}?api_key=f2291e5d64d84082e4b2181b3587d77d&language=en-US&query=Halloween&page=1`);
         containerResponse = await SendReq.json();
         dataRes=await containerResponse.results;
-        saveType=type;
         await Display(dataRes);
-
 } 
-
 responsData();
 
 
@@ -87,12 +85,12 @@ responsData();
 
 
 
+// function Display data in the site 
 
 let Rows=$('#rowDisplay');
 // show Data in Row
 async function Display(value)
 {
-  
         containerRow ='';
         let modeTitle;
         let modeDate;
@@ -115,7 +113,6 @@ async function Display(value)
             {
                 modeDate=value[i].first_air_date;
             }
-
             containerRow+=`   
                <div class="overflow-hidden col-lg-4 col-md-6 col-sm-12 wow animate__zoomInDown" data-wow-delay="0s" data-wow-duration="1s">
             <div class="filem position-relative bg-info ">
@@ -134,7 +131,7 @@ async function Display(value)
         Rows.html(containerRow);
 }
 
-
+// function search in the page in the 
 
 let serachPage= document.getElementById('searchPage');
 serachPage.addEventListener('input',function()
@@ -142,7 +139,7 @@ serachPage.addEventListener('input',function()
   let store=[];
   for(let i=0;i<dataRes.length;i++)
   {
-    if(dataRes[i].original_title.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
+    if(dataRes[i].original_title.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true||dataRes[i].name.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
     {
     store.push(dataRes[i]);
     }
@@ -150,6 +147,7 @@ serachPage.addEventListener('input',function()
   Display(store);
 })
 
+// function search in the all api
 
 let searchApi= document.getElementById('searchApi');
 
