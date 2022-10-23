@@ -75,7 +75,7 @@ async function responsData(type="movie/now_playing",query="")
         dataRes=await containerResponse.results;
         saveType=type;
         await Display(dataRes);
-        // await num();
+
 } 
 
 responsData();
@@ -113,7 +113,7 @@ async function Display(value)
             }
             else
             {
-                modeDate=value[i].first_air_date;                ;
+                modeDate=value[i].first_air_date;
             }
 
             containerRow+=`   
@@ -139,19 +139,21 @@ async function Display(value)
 let serachPage= document.getElementById('searchPage');
 serachPage.addEventListener('input',function()
 {
+  let store=[];
   for(let i=0;i<dataRes.length;i++)
   {
-    console.log("aa");
+    if(dataRes[i].original_title.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
+    {
+    store.push(dataRes[i]);
+    }
   }
+  Display(store);
 })
 
 
-// async function num()
-// {
-// return new Promise (function()
-// {
-//   console.log(dataRes.length)
-// })
-// }
+let searchApi= document.getElementById('searchApi');
 
-
+searchApi.addEventListener('input',function()
+{
+  responsData('search/movie',`&query=${this.value}&`);
+})
