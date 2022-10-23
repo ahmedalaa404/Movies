@@ -13,7 +13,7 @@ $(document).click(function (event) {
       }
   );
   // end of loading screen
-  
+
 // plugins Jquery
   new WOW().init();
 // end plugins 
