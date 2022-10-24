@@ -139,11 +139,31 @@ serachPage.addEventListener('input',function()
   let store=[];
   for(let i=0;i<dataRes.length;i++)
   {
-    if(dataRes[i].original_title.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true||dataRes[i].name.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
+    if(dataRes[i].original_title!=null)
     {
-    store.push(dataRes[i]);
+      if(dataRes[i].original_title.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
+      {
+        store.push(dataRes[i]);
+      }
     }
+    if(dataRes[i].name!=null)
+    {
+      if(dataRes[i].name.toUpperCase().includes(`${serachPage.value.toUpperCase()}`)==true)
+      {
+        store.push(dataRes[i]);
+      }
+    }
+
+
+
   }
+
+
+
+
+
+
+
   Display(store);
 })
 
